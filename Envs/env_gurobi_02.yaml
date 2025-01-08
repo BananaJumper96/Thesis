@@ -1,0 +1,10 @@
+name: 
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+  - Gurobi
+dependencies:
+  - smetana=1.2.0
+  - gurobi=10.0.1
+  - reframed=1.5.1  # Changed

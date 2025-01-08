@@ -1,0 +1,24 @@
+# config.yaml
+
+path:
+  root: /mnt/lscratch/users/rparise/Thesis/Files/M11-07
+  scratch: /mnt/lscratch/users/rparise
+
+folder:
+  proteinBins: /mnt/lscratch/users/rparise/Thesis/Files/M11-07/protein_bins
+  output_folder: /mnt/lscratch/users/rparise/Thesis/Files/M11-07/Test_output
+
+scripts:
+  carveme: media_db.tsv
+  modelVis: modelVis.R
+  # Add other script names as needed
+
+envs:
+  metagem: metagem_env  # Name of your conda environment
+
+params:
+  carveMedia: minimal  # Media to use with CarveMe
+  smetanaMedia: smetana_media.tsv
+  smetanaSolver: glpk  # Or 'cplex' if available
+
+# Add any additional configurations as needed

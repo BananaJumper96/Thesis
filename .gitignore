@@ -1,0 +1,8 @@
+*.log
+.snakemake/
+Files/M11-07/Test_output/
+Envs/**
+!Envs/**/env.yaml
+!Envs/**/env_gurobi.yaml
+!Envs/**/env_gurobi_02.yaml
+transyt/
