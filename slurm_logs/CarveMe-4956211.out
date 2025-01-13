@@ -1,6 +1,0 @@
-The flag 'directory' used in rule all is only valid for outputs, not inputs.
-The flag 'directory' used in rule all is only valid for outputs, not inputs.
-Building DAG of jobs...
-WildcardError in file /mnt/lscratch/users/rparise/Thesis/Snakefile, line 20:
-Wildcards in input files cannot be determined from output files:
-'binID'
