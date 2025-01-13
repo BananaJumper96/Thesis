@@ -1,0 +1,14 @@
+out_path: "/mnt/lscratch/users/ohickl/Thesis/run_001/out2"
+samples_path: "/mnt/lscratch/users/ohickl/Thesis/run_001/samples2"
+# "M1,M2,M3,M4,M5,M7,M8,M9,M10,M11,M13,M14,M15A,M15B,M16"
+smetanaMedia: "M11"
+# detailed global
+smetanaMode: "detailed"
+# gurobi cplex
+smetanaSolver: "cplex"
+# fbc2 cobra biggs
+smetanaFlavor: "fbc2"
+carvemeMedium: "M3"
+bin_quali_file_name: "bins.stats.gz"
+min_comp: 90
+max_cont: 5

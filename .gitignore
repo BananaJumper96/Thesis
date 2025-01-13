@@ -2,7 +2,11 @@
 .snakemake/
 Files/M11-07/Test_output/
 Envs/**
-!Envs/**/env.yaml
-!Envs/**/env_gurobi.yaml
-!Envs/**/env_gurobi_02.yaml
+!Envs/**/carveme.yaml
+!Envs/**/metaGEMmod.yaml
+!Envs/**/smetana.yaml
 transyt/
+Files/
+slurm_logs/
+Snakefile_test
+run_carveMe.sh
