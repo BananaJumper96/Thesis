@@ -4,6 +4,9 @@ import seaborn as sns
 import os
 import matplotlib.pyplot as plt
 import argparse
+from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import linkage
+from scipy.spatial.distance import squareform
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Create a heatmap of the enzymes per gems')
@@ -34,14 +37,17 @@ def main():
             for ec_number in ec_numbers:
                 if ec_number in content:
                     ec_presence.at[ec_file, ec_number] = 1
-                    ec_vector = ec_presence.loc[ec_file]
+            ec_vector = ec_presence.loc[ec_file]
     # Perform clustering on EC presence
     clustering = AgglomerativeClustering(n_clusters=6, affinity='euclidean', linkage='ward')
     clusters = clustering.fit_predict(ec_presence)
-
     # Add cluster labels to the DataFrame
     ec_presence['Cluster'] = clusters
+    
+    # Calculate enzyme correlations
+    enzyme_correlation = ec_presence.drop(columns=['Cluster']).corr()
 
+    # Visualize the data as a heatmap
     # Visualize the data as a heatmap
     plt.figure(figsize=(12, 8))
     sns.heatmap(ec_presence.drop(columns=['Cluster']), cmap='viridis', cbar=True)
@@ -53,6 +59,25 @@ def main():
     plt.savefig(os.path.join(args.output, 'ec_heatmap.pdf'))
     plt.show()
     
+    # Perform hierarchical clustering on the pairwise enzyme correlations
+    
+    distance_matrix = squareform(1 - enzyme_correlation)
+    linkage_matrix = linkage(distance_matrix, method='ward')
+
+    # Plot the clustered heatmap
+    plt.figure(figsize=(14, 12))
+    sns.clustermap(
+        enzyme_correlation,
+        cmap="viridis",
+        figsize=(14, 12),
+        row_linkage=linkage_matrix,
+        col_linkage=linkage_matrix,
+        cbar_kws={'label': 'Correlation'},
+        xticklabels=False,  # Hide labels for clarity in dense plots
+        yticklabels=False,
+    )
+    # Save the clustered heatmap
+    plt.savefig(os.path.join(args.output, 'enzyme_correlation_heatmap.pdf'))
     # Save the resulting EC presence matrix with clusters
     ec_presence.to_csv(os.path.join(args.output, 'ec_presence_with_clusters.csv'), index=True)
 
